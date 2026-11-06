@@ -1,41 +1,190 @@
 <!doctype html>
-<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#0a0d18"><title>RELATIVITY LAB — メカニクス実験室</title>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#081321">
+<title>GRAVITY GLOW — ひかりを とどけよう</title>
 <style>
-:root{color-scheme:dark;--bg:#090d18;--p:#121a2a;--b:#26334a;--muted:#95a3be;--white:#f3f5ff;--cyan:#69dfeb;--pink:#ffa2c3;--gold:#ffcf8f;--green:#8aefcb}*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}html{background:var(--bg)}body{margin:0;color:var(--white);font-family:system-ui,-apple-system,'Hiragino Kaku Gothic ProN','Noto Sans JP',sans-serif;letter-spacing:.02em;background:radial-gradient(ellipse at 50% -40%,#23304c 0%,transparent 65%),var(--bg);min-height:100vh}button{font:inherit;color:inherit;cursor:pointer}main{max-width:510px;margin:auto;padding:24px 18px calc(28px + env(safe-area-inset-bottom))}.eyebrow{font-weight:750;letter-spacing:.22em;color:var(--cyan);font-size:10px}.heading{font-weight:720;font-size:28px;letter-spacing:-.05em;margin:5px 0 7px}.sub{color:var(--muted);font-size:12px;line-height:1.65}.tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:22px 0 16px;padding:5px;background:#111828;border:1px solid #26334a;border-radius:17px}.tab{background:none;border:0;border-radius:12px;font-size:12px;font-weight:700;color:var(--muted);padding:11px 2px}.tab.active{background:#27384c;color:var(--white);box-shadow:0 1px 8px #0005}.panel{background:linear-gradient(155deg,#162238,#111a29);border:1px solid #2c3b56;border-radius:22px;padding:19px 16px;box-shadow:0 16px 54px #0003}.meta{display:flex;align-items:center;justify-content:space-between;gap:8px}.pill{font-size:10px;letter-spacing:.11em;font-weight:800;color:var(--gold);border-radius:22px;padding:6px 10px;border:1px solid #e3b87b55;background:#e9b67715}.progress{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}.game-title{font-size:22px;font-weight:750;letter-spacing:-.045em;margin:12px 0 5px}.story{font-size:13px;color:#becce1;line-height:1.7;min-height:43px;margin-bottom:10px}.scene{background:radial-gradient(ellipse at 50% 10%,#1d2d46,#0b1323 75%);border:1px solid #30415a;border-radius:16px;overflow:hidden;min-height:256px;position:relative}.scene svg{width:100%;display:block}.readouts{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin:13px 0}.readout{padding:11px 12px;border:1px solid #2d3d57;background:#0c1423;border-radius:13px;min-height:76px}.readout .k{font-size:10px;color:#96a9c4}.readout .v{font-size:22px;font-weight:700;line-height:1.8;font-variant-numeric:tabular-nums;letter-spacing:-.035em}.readout .target{font-size:11px;color:var(--muted)}.good{color:var(--green)}.bad{color:var(--pink)}.control-title{font-size:11px;color:#92a7c3;margin:16px 0 9px;font-weight:700}.segments{display:flex;gap:6px}.seg{flex:1;min-width:0;padding:10px 2px;border:1px solid #3a4c66;border-radius:12px;background:#1a263b;font-variant-numeric:tabular-nums;font-size:13px;font-weight:750}.seg.active{border-color:var(--cyan);background:#1d3c48;box-shadow:0 0 0 1px #69dfeb44 inset}.seg small{display:block;font-size:9px;font-weight:500;color:#91a6bb;margin-bottom:4px}.options{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}.opt{padding:13px 0;background:#152337;border:1px solid #344a66;border-radius:12px;font-size:12px;font-weight:650}.opt.active{background:#254a57;border-color:var(--cyan);color:#b9f7ff}.actions{display:flex;gap:8px;margin-top:16px}.primary{background:var(--cyan);color:#06212a;border:0;border-radius:12px;padding:13px 15px;flex:1;font-weight:850;font-size:13px}.secondary{border:1px solid #405371;background:transparent;border-radius:12px;padding:13px 17px;font-weight:700;font-size:13px}.message{font-size:12px;line-height:1.7;color:var(--muted);padding:11px 12px;background:#0e1523;border-radius:11px;margin-top:11px;min-height:42px}.message.ok{background:#18382f;color:#a7f3d4}.note{margin:18px 3px 0;color:#90a4c0;font-size:12px;line-height:1.8}.footer{font-size:11px;line-height:1.7;color:#71819c;margin-top:18px}.node{cursor:pointer;touch-action:manipulation}.fade{animation:rise .25s ease-out}@keyframes rise{from{opacity:.6;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}@media (max-width:360px){main{padding-left:12px;padding-right:12px}.panel{padding:15px 12px}.heading{font-size:25px}}
-</style></head><body><main><div class="eyebrow">PHYSICS → PLAYABLE MECHANICS</div><div class="heading">RELATIVITY LAB<span style="color:var(--cyan)">.</span></div><div class="sub">3つの物理ギミックを比較するための小さな実験室。<br>数式の問題集ではなく、実際に触れて感触を確かめる試作。</div><nav class="tabs" aria-label="遊ぶゲームを選択"><button class="tab active" data-mode="world">01 世界線</button><button class="tab" data-mode="causal">02 光円錐</button><button class="tab" data-mode="mirror">03 動く鏡</button></nav><section id="app" class="panel" aria-live="polite"></section><p id="note" class="note"></p><p class="footer">すべてオフラインで動作。速度・時間・光路は物理式で計算（c = 1）。宇宙船の加速・減速は瞬間的に行う理想化。光円錐は信号速度の上限を使用。グラフィックは模式図。</p></main>
+:root{--bg:#081321;--ink:#eef8ff;--muted:#9aafc2;--cyan:#65eaff;--pink:#ff9bbd;--gold:#ffe0a0}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{background:var(--bg)}
+body{margin:0;min-height:100dvh;background:radial-gradient(ellipse 90% 40% at 50% -13%,#193e58 0%,transparent 75%),var(--bg);color:var(--ink);font-family:ui-rounded,"Hiragino Maru Gothic ProN","Hiragino Kaku Gothic ProN",-apple-system,system-ui,sans-serif;overscroll-behavior-y:none}
+button{font:inherit;color:inherit;cursor:pointer}
+.app{max-width:480px;margin:auto;padding:calc(12px + env(safe-area-inset-top)) 14px calc(18px + env(safe-area-inset-bottom));min-height:100dvh}
+.top{display:flex;align-items:center;justify-content:space-between;min-height:40px;gap:8px}
+.brand{font-family:ui-rounded,system-ui,sans-serif;letter-spacing:.23em;font-size:12px;font-weight:900;color:#b7e8f2;white-space:nowrap}
+.brand i{font-style:normal;color:#79dce4}
+.topright{display:flex;align-items:center;gap:8px}
+.count{background:#173048;color:#b8e3fa;border:1px solid #29465b;padding:8px 13px;border-radius:999px;font-size:11px;font-weight:800;font-variant-numeric:tabular-nums;letter-spacing:.08em}
+.iconbtn{height:38px;width:38px;border-radius:50%;display:grid;place-items:center;border:1px solid #29465b;background:#112639;transition:transform .17s,background .17s}
+.iconbtn:active,.softbtn:active,.bigbtn:active{transform:scale(.94)}
+.iconbtn svg{height:17px;width:17px;stroke:#b9d3e1;stroke-width:1.9;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.headline{text-align:center;margin:15px 0 12px;min-height:70px}
+.headline h1{font-size:clamp(25px,7vw,32px);font-weight:850;letter-spacing:.045em;line-height:1.34;margin:0;color:#f3fcff;text-shadow:0 3px 30px #8ccfff18}
+.headline p{font-size:13px;color:#b3c9d5;font-weight:650;letter-spacing:.05em;margin:7px 0 0}
+.scene-frame{position:relative;border:1px solid #35536b;background:#071729;border-radius:25px;overflow:hidden;isolation:isolate;box-shadow:0 26px 58px #01060fa6,0 0 0 5px #0e233747, inset 0 0 55px #132942}
+.scene{display:block;width:100%;height:auto;aspect-ratio:360/430;touch-action:none;user-select:none;-webkit-user-select:none}
+.game-footer{padding:14px 3px 0;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.status{min-width:0;display:flex;align-items:center;gap:10px;color:#bdd0df;font-size:13px;font-weight:750;letter-spacing:.015em}
+.spark{height:11px;width:11px;border-radius:50%;background:#9bafff;box-shadow:0 0 16px #8399ff80}
+.tools{display:flex;gap:8px;flex-shrink:0}
+.softbtn{border:1px solid #2b4357;background:#102637;border-radius:999px;color:#b8d2e1;padding:11px 13px;font-size:12px;font-weight:750;transition:transform .17s,background .17s}
+.softbtn:first-letter{font-size:14px}
+.progress{display:flex;justify-content:center;gap:5px;margin:19px auto 0}
+.pip{width:17px;height:4px;background:#284356;border-radius:999px;transition:background .2s, width .2s}
+.pip.done{background:#6cd2db}.pip.now{background:#c6edf6;width:27px}
+.below{text-align:center;font-size:10px;color:#68899d;letter-spacing:.055em;margin-top:13px}
+#sceneSvg text{font-family:ui-rounded,"Hiragino Maru Gothic ProN",system-ui,sans-serif}
+.drag-target{cursor:grab;touch-action:none}.drag-target:active{cursor:grabbing}
+.orb-breath{animation:orbreathe 2.3s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+.target-pulse{animation:pulse 2.15s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+@keyframes orbreathe{0%,100%{opacity:.7}50%{opacity:1}}
+@keyframes pulse{0%,100%{opacity:.5;transform:scale(.91)}50%{opacity:1;transform:scale(1.12)}}
+#gesture{pointer-events:none;animation:gesture 2.4s cubic-bezier(.45,0,.2,1) infinite}
+@keyframes gesture{0%,12%{opacity:0;transform:translateY(15px)}25%{opacity:1}70%{opacity:1;transform:translateY(-24px)}91%,100%{opacity:0;transform:translateY(-30px)}}
+#hint-layer{pointer-events:none}
+.success-screen{position:absolute;inset:0;z-index:10;display:flex;align-items:center;justify-content:center;flex-direction:column;background:linear-gradient(180deg,#07192870,#071928e6 72%);opacity:0;visibility:hidden;transition:opacity .35s,visibility .35s;backdrop-filter:blur(2px)}
+.success-screen.show{opacity:1;visibility:visible}
+.success-icon{font-size:51px;filter:drop-shadow(0 0 21px #ffe6a5bb);animation:pop .55s cubic-bezier(.16,1.5,.4,1) both}
+.success-title{font-size:40px;font-weight:900;color:#fff8de;letter-spacing:.08em;margin:10px 0 2px;text-shadow:0 0 36px #ffe7bd60}
+.success-sub{font-size:14px;font-weight:700;color:#cbe4ed;letter-spacing:.04em;margin-bottom:27px}
+.bigbtn{background:linear-gradient(130deg,#83f1fa,#b0fbeb);border:0;color:#073044;border-radius:999px;min-width:210px;padding:16px 20px;font-weight:900;font-size:15px;box-shadow:0 7px 36px #54cde466;transition:transform .17s}
+@keyframes pop{from{transform:scale(.4) rotate(-18deg);opacity:0}to{transform:scale(1) rotate(0);opacity:1}}
+.floating{position:absolute;z-index:11;pointer-events:none;font-size:16px;animation:floatup 1s ease-out forwards}
+@keyframes floatup{0%{opacity:1;transform:translate(0,0) scale(.65)}100%{opacity:0;transform:translate(var(--tx),var(--ty)) scale(1.5)}}
+.toast{pointer-events:none;position:absolute;z-index:8;bottom:16px;left:50%;transform:translate(-50%,10px);font-size:12px;font-weight:850;color:#e9fdff;background:#1c394acb;border:1px solid #5d9aae7d;border-radius:999px;padding:9px 15px;white-space:nowrap;opacity:0;transition:opacity .25s,transform .25s}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.stage-sheet{position:fixed;inset:0;display:none;z-index:40;background:#04111cbb;backdrop-filter:blur(7px);align-items:center;justify-content:center;padding:18px}
+.stage-sheet.open{display:flex}
+.sheet-inner{background:#102538;border:1px solid #43657b;border-radius:25px;padding:21px;width:min(400px,100%);box-shadow:0 20px 70px #000b}
+.sheet-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:17px}
+.sheet-top h2{font-size:21px;margin:0;letter-spacing:.03em}
+.level-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}
+.level-grid button{height:55px;border-radius:15px;background:#17354a;border:1px solid #36586b;font-size:15px;font-weight:850;color:#bfe7f0}
+.level-grid button.active{background:#b5f7ee;color:#0d3547;border-color:#c2fff0}
+.sheet-note{margin-top:15px;color:#8faebf;font-size:11px;line-height:1.6}
+@media(max-height:760px){.app{padding-top:calc(7px + env(safe-area-inset-top))}.headline{margin:7px 0 9px;min-height:56px}.headline h1{font-size:26px}.headline p{margin-top:3px}.game-footer{padding-top:10px}.progress{margin-top:12px}.below{margin-top:8px}}
+@media(max-width:370px){.headline h1{font-size:26px}.headline p{font-size:12px}.tools{gap:5px}.softbtn{padding:9px 10px}.game-footer{gap:3px}.status{font-size:11px}}
+@media(prefers-reduced-motion:reduce){.orb-breath,.target-pulse,#gesture{animation:none}}
+</style>
+</head>
+<body>
+<main class="app">
+  <header class="top">
+    <div class="brand">GRAVITY <i>✦</i> GLOW</div>
+    <div class="topright">
+      <button class="count" id="stage-menu" aria-label="ステージを選ぶ">01 / 12 ▾</button>
+      <button class="iconbtn" id="sound" aria-label="音を切り替える" title="音のオン・オフ">
+        <svg viewBox="0 0 24 24"><path d="M11 5 6 9H3v6h3l5 4V5Z"/><path id="sound-wave" d="M15 9a4 4 0 0 1 0 6M18 6a8 8 0 0 1 0 12"/></svg>
+      </button>
+    </div>
+  </header>
+  <div class="headline">
+    <h1 id="headline">ほしを うごかそう</h1>
+    <p id="subhead">ひかりを ゴールに とどけよう</p>
+  </div>
+  <section class="scene-frame" id="scene-frame" aria-label="星を動かして光をゴールへ届けるゲーム">
+    <svg class="scene" id="sceneSvg" viewBox="0 0 360 430" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="星をドラッグして、光を右側の輪に入れよう">
+      <defs>
+        <radialGradient id="space" cx="49%" cy="42%" r="69%"><stop stop-color="#112c43"/><stop offset=".68" stop-color="#0a1b30"/><stop offset="1" stop-color="#071322"/></radialGradient>
+        <radialGradient id="planet-glow"><stop stop-color="#aa91ff" stop-opacity=".30"/><stop offset=".32" stop-color="#9881ed" stop-opacity=".14"/><stop offset="1" stop-color="#947be8" stop-opacity="0"/></radialGradient>
+        <radialGradient id="planet-core" cx="34%" cy="26%"><stop stop-color="#fffdff"/><stop offset=".15" stop-color="#e1caff"/><stop offset=".52" stop-color="#a18afa"/><stop offset="1" stop-color="#5346a1"/></radialGradient>
+        <linearGradient id="shine" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f3faff" stop-opacity=".85"/><stop offset="1" stop-color="#e9d5ff" stop-opacity="0"/></linearGradient>
+        <filter id="blur"><feGaussianBlur stdDeviation="3.3"/></filter>
+        <filter id="wideblur"><feGaussianBlur stdDeviation="7.5"/></filter>
+        <clipPath id="clip-space"><rect x="0" y="0" width="360" height="430" rx="0"/></clipPath>
+      </defs>
+      <rect width="360" height="430" fill="url(#space)"/>
+      <g id="dust"></g>
+      <g id="warp" opacity=".82" clip-path="url(#clip-space)"></g>
+      <g id="lightpaths" clip-path="url(#clip-space)"></g>
+      <g id="emitters"></g>
+      <g id="receivers"></g>
+      <g id="planets"></g>
+      <g id="hint-layer"></g>
+      <g id="gesture"></g>
+    </svg>
+    <div class="success-screen" id="success-screen">
+      <div class="success-icon">✦</div>
+      <div class="success-title">ぴったり！</div>
+      <div class="success-sub" id="success-sub">ひかりが とどいた！</div>
+      <button class="bigbtn" id="next">つぎへ すすむ　→</button>
+    </div>
+    <div class="toast" id="toast">このあたりに うごかしてみよう ✦</div>
+  </section>
+  <div class="game-footer">
+    <div class="status"><span class="spark" id="spark"></span><span id="status">ほしを ゆびで うごかそう</span></div>
+    <div class="tools">
+      <button class="softbtn" id="hint">✧ ヒント</button>
+      <button class="softbtn" id="reset">↺ もういちど</button>
+    </div>
+  </div>
+  <div class="progress" id="progress" aria-hidden="true"></div>
+  <div class="below">ひかりは ほしの ちかくで まがる</div>
+</main>
+<div class="stage-sheet" id="stage-sheet" role="dialog" aria-modal="true" aria-label="ステージを選ぶ">
+ <div class="sheet-inner"><div class="sheet-top"><h2>ステージを えらぼう</h2><button class="iconbtn" id="close-sheet" aria-label="閉じる">✕</button></div><div class="level-grid" id="level-grid"></div><div class="sheet-note">どのステージからでも おためしできます。<br>最初は 01 からがおすすめ。</div></div>
+</div>
 <script>
 'use strict';
-const $=s=>document.querySelector(s), app=$('#app');let mode='world';let audio;
-function beep(win=false){try{audio=audio||new (window.AudioContext||window.webkitAudioContext)();const now=audio.currentTime;let f=win?[523.25,659.25,783.99]:[440];f.forEach((hz,i)=>{const o=audio.createOscillator(),g=audio.createGain();o.type='sine';o.frequency.value=hz;const at=now+i*(win?.09:0);g.gain.setValueAtTime(.0001,at);g.gain.exponentialRampToValueAtTime(.055,at+.018);g.gain.exponentialRampToValueAtTime(.0001,at+(win?.25:.095));o.connect(g);g.connect(audio.destination);o.start(at);o.stop(at+(win?.27:.11))})}catch(e){}}
-const sp=[0,6,-6,8,-8];const worldLevels=[
-{label:'はじめての時間差',n:2,tau:3.2,x:0,cp:{},desc:'往復して地球に戻ろう。地球では4年、船内では3.2年を過ごす。'},
-{label:'途中で立ち止まる',n:3,tau:4.4,x:0,cp:{1:1.6,2:1.6},desc:'2年目と4年目は、同じ場所にいる。6年後に帰還して船内時計を4.4年に。'},
-{label:'遠くへ、そして帰る',n:4,tau:5.6,x:0,cp:{2:2.8},desc:'4年目に2.8光年先を通り、8年後に帰還。船内では5.6年。'},
-{label:'一度止まって戻る',n:5,tau:7.6,x:0,cp:{2:2.8,4:1.2},desc:'4年目に2.8光年、8年目に1.2光年。10年後の再会時、船内時計は7.6年。'},
-{label:'六区間の往復',n:6,tau:9.6,x:0,cp:{2:2.8,4:2.8,5:1.6},desc:'4年目・8年目・10年目の通過点を守り、12年後に帰還しよう。'},
-{label:'折り返す二つの山',n:6,tau:8,x:0,cp:{2:3.2,4:0,5:1.2},desc:'4年目に3.2光年、8年目に地球、10年目に1.2光年へ。12年後の船内時計は8年。'}
-];let wi=0, wv=[],ws=0, wmsg='区間をタップし、下の速度から選んでみよう。';
-const causalLevels=[
-{label:'光の速さでつなぐ',desc:'時間が足りない接続はできない。青い点を順番にタップして緑のゴールへ。',nodes:[['S',0,0,0],['A',2,2,1],['D',-3,2,0],['G',4,4,2]],max:3},
-{label:'遠くへ曲がる',desc:'黄色い中継点を全て通り、最後にゴールへ。途中を飛び越してはならない。',nodes:[['S',0,0,0],['A',2,2,1],['C',3,4,0],['D',-3,4,0],['B',-1,5,1],['G',1,8,2]],max:4},
-{label:'遠回りはできるか',desc:'中継点の場所と時刻は固定。届く範囲を重ねて、すべてをつなごう。',nodes:[['S',0,0,0],['D',-2,3,0],['A',3,4,1],['E',4,7,0],['B',-1,8,1],['F',5,11,0],['C',2,12,1],['G',0,14,2]],max:5},
-{label:'光円錐の隙間',desc:'光の届く範囲だけを使って、3つの必須点をつなごう。',nodes:[['S',0,0,0],['A',1,3,1],['D',-3,4,0],['B',-2,7,1],['E',4,8,0],['C',2,11,1],['F',-4,12,0],['G',0,14,2]],max:5}
-];let ci=0,path=['S'],cmsg='次に信号を中継する点をタップしよう。';
-const mirrorLevels=[
-{label:'反射して戻る',desc:'右側の動く鏡に光を当てて戻す。発射から帰還まで「6拍」にしよう。',d:3,v:0,only:'t'},
-{label:'色を3倍に',desc:'鏡に向かって光を送り、戻ったときの周波数を3倍にしよう。',d:3,v:-.5,only:'f'},
-{label:'赤く、ゆっくり',desc:'戻るまで8拍、周波数は元の3分の1。2条件を同時に満たそう。',d:2,v:.5},
-{label:'青く、素早く',desc:'戻るまで4拍、周波数は3倍。2条件を同時に満たそう。',d:3,v:-.5},
-{label:'遠い鏡',desc:'帰還12.5拍、周波数は元の2/3。',d:5,v:.2},
-{label:'近づく鏡',desc:'帰還6.67拍、周波数は1.5倍。',d:4,v:-.2}
-];let mi=0, md=1,mv=0,mmsg='鏡の距離と移動速度をタップして、戻ってくる光を調整。';
-const fmt=n=>Math.abs(n)<1e-8?'0':Number(n.toFixed(2)).toString();const eq=(a,b)=>Math.abs(a-b)<.015;const svgText=(x,y,t,color='#94abc5',size=10)=>`<text x="${x}" y="${y}" fill="${color}" font-size="${size}" text-anchor="middle" font-family="system-ui,sans-serif">${t}</text>`;
-function frame(idx,total,title,desc,tag,body,controls,msg,hint){app.innerHTML=`<div class="fade"><div class="meta"><span class="pill">${tag}</span><span class="progress">${String(idx+1).padStart(2,'0')} / ${String(total).padStart(2,'0')}</span></div><h2 class="game-title">${title}</h2><div class="story">${desc}</div><div class="scene">${body}</div>${controls}<div class="message${msg.startsWith('CLEAR')?' ok':''}" id="feedback">${msg}</div><div class="actions"><button class="secondary" id="reset">やり直す</button><button class="primary" id="check">判定する</button></div></div>`;$('#note').textContent=hint;$('#reset').addEventListener('click',reset);$('#check').addEventListener('click',check)}
-function renderWorld(){const l=worldLevels[wi];let pts=[{t:0,x:0}],x=0,tau=0;for(let k=0;k<l.n;k++){const v=wv[k]/10;x+=v*2;tau+=2*Math.sqrt(1-v*v);pts.push({t:2*(k+1),x})}let sx=x=>160+x*26,sy=t=>19+t*(227/(l.n*2));let grid='';for(let ix=-5;ix<=5;ix++) grid+=`<path d="M${sx(ix)} 15V252" stroke="#39475f" stroke-opacity="${ix===0?.75:.28}" stroke-dasharray="${ix===0?'4 4':'2 6'}"/>`;for(let k=0;k<=l.n;k++)grid+=`<path d="M18 ${sy(k*2)}H302" stroke="#39475f" stroke-opacity=".20"/>`;let lines=pts.slice(1).map((p,k)=>`<line x1="${sx(pts[k].x)}" y1="${sy(pts[k].t)}" x2="${sx(p.x)}" y2="${sy(p.t)}" stroke="${k===ws?'#90eaf7':'#88c7ed'}" stroke-width="${k===ws?4:2.5}" stroke-linecap="round"/>`).join('');let markers=Object.entries(l.cp).map(([k,v])=>`<circle cx="${sx(v)}" cy="${sy(2*Number(k))}" r="8" fill="none" stroke="#ffce84" stroke-width="2" stroke-dasharray="3 2"/>`).join('');const dot=pts.map((p,k)=>`<circle cx="${sx(p.x)}" cy="${sy(p.t)}" r="${k===l.n?5:3.5}" fill="${k===l.n?'#91f2d6':'#b8e5fc'}"/>`).join('');let svg=`<svg viewBox="0 0 320 264" role="img" aria-label="宇宙船の世界線。下方向が時間、横方向が位置">${grid}${markers}${lines}${dot}${svgText(35,261,'位置 →')}${svgText(160,13,'地球 x=0')}${svgText(287,261,'時間 ↓')}</svg>`;let cps=Object.entries(l.cp).every(([k,v])=>eq(pts[Number(k)].x,v));let xok=eq(x,l.x),tok=eq(tau,l.tau);const read=`<div class="readouts"><div class="readout"><div class="k">帰還位置（光年）</div><div class="v ${xok?'good':''}">${fmt(x)}</div><div class="target">目標 ${fmt(l.x)}</div></div><div class="readout"><div class="k">宇宙船の経過時間（年）</div><div class="v ${tok?'good':''}">${fmt(tau)}</div><div class="target">目標 ${fmt(l.tau)}</div></div></div>`;let controls=`${read}<div class="control-title">① 変更する時間区間をタップ</div><div class="segments">${wv.map((v,k)=>`<button class="seg ${ws===k?'active':''}" data-seg="${k}"><small>${2*k}–${2*(k+1)}年</small>${v>0?'+':''}${fmt(v/10)}c</button>`).join('')}</div><div class="control-title">② 宇宙船の速度を選ぶ（＋は右、−は左）</div><div class="options">${sp.map(v=>`<button class="opt ${wv[ws]===v?'active':''}" data-speed="${v}">${v>0?'+':''}${fmt(v/10)}c</button>`).join('')}</div><div class="sub" style="margin-top:12px">${Object.keys(l.cp).length?`黄色い輪は通過する地点。${cps?' ✓':''}`:'青い折れ線は宇宙船の経路。'}</div>`;frame(wi,worldLevels.length,l.label,l.desc,'SPECIAL RELATIVITY',svg,controls,wmsg,'物理式：各区間の船内時間 = 地球時間 × √(1−v²/c²)。途中の速度変更を瞬間的とみなす理想化。');app.querySelectorAll('[data-seg]').forEach(b=>b.onclick=()=>{ws=+b.dataset.seg;renderWorld()});app.querySelectorAll('[data-speed]').forEach(b=>b.onclick=()=>{wv[ws]=+b.dataset.speed;wmsg='世界線と時計が変わった。';beep();renderWorld()})}
-function renderCausal(){const l=causalLevels[ci];const nodes=l.nodes.map(([name,x,t,kind])=>({name,x,t,kind}));const get=name=>nodes.find(n=>n.name===name),cur=get(path.at(-1));const sx=x=>160+x*21,sy=t=>22+t*15.6;let grid='';for(let ix=-6;ix<=6;ix+=2)grid+=`<path d="M${sx(ix)} 10V247" stroke="#39475f" stroke-opacity=".22"/>`;for(let t=0;t<=14;t+=2)grid+=`<path d="M12 ${sy(t)}H308" stroke="#39475f" stroke-opacity=".22"/>`;const light=`<path d="M${sx(cur.x)} ${sy(cur.t)} L${sx(cur.x-(14-cur.t))} ${sy(14)} L${sx(cur.x+(14-cur.t))} ${sy(14)} Z" fill="#66dcf2" fill-opacity=".075" stroke="none"/>`;const lines=path.slice(1).map((n,i)=>{const a=get(path[i]),b=get(n);return `<line x1="${sx(a.x)}" y1="${sy(a.t)}" x2="${sx(b.x)}" y2="${sy(b.t)}" stroke="#75dbe9" stroke-width="3"/>`}).join('');const dots=nodes.map(n=>{let done=path.includes(n.name),reach=n.t>cur.t && Math.abs(n.x-cur.x)<=n.t-cur.t+1e-8, col=done?'#91f2d6':n.kind===2?'#9fefbd':n.kind===1?'#ffd296':'#708cad';return `<g class="node" data-node="${n.name}"><circle cx="${sx(n.x)}" cy="${sy(n.t)}" r="${n.kind===0?12:14}" fill="#142235" stroke="${col}" stroke-width="${reach?2.5:1.5}" opacity="${reach||done?.99:.65}"/><text x="${sx(n.x)}" y="${sy(n.t)+3.8}" fill="${col}" font-size="11" text-anchor="middle" font-weight="750">${n.name}</text></g>`}).join('');let svg=`<svg viewBox="0 0 320 259" role="img" aria-label="時間と距離の図。未来へ届く光円錐の領域">${grid}${light}${lines}${dots}${svgText(45,252,'位置 →')}${svgText(287,252,'時間 ↓')}</svg>`;let rem=nodes.filter(n=>n.kind===1&&!path.includes(n.name)).map(n=>n.name);let controls=`<div class="readouts"><div class="readout"><div class="k">通過した中継点</div><div class="v" style="font-size:17px">${path.join(' → ')}</div><div class="target">最大接続数 ${l.max-1}</div></div><div class="readout"><div class="k">残りの必須中継点</div><div class="v" style="font-size:17px">${rem.length?rem.join(' · '):'なし'}</div><div class="target">黄色：必須／緑：ゴール</div></div></div><div class="sub">水色の領域が、今いるイベントから光速以下で到達できる未来。点を直接タップして経路を作る。</div>`;frame(ci,causalLevels.length,l.label,l.desc,'CAUSAL STRUCTURE',svg,controls,cmsg,'物理ルール：次の出来事には Δt ≥ |Δx| / c の場合のみ届く。これは相対論の光円錐の基本であり、単独では通常の経路パズルに近い。');app.querySelectorAll('[data-node]').forEach(g=>g.onclick=()=>{const n=get(g.dataset.node);if(n.name===cur.name)return;if(n.t<=cur.t){cmsg='過去の出来事には信号を送れない。';beep();renderCausal();return}if(Math.abs(n.x-cur.x)>n.t-cur.t+1e-8){cmsg='そこは光円錐の外。光速を超えないと届かない。';beep();renderCausal();return}if(path.length>=l.max){cmsg='中継回数の上限に達した。最初から考え直そう。';beep();renderCausal();return}path.push(n.name);cmsg=`${n.name} に到達した。残る必須点を確認しよう。`;beep();renderCausal()})}
-function renderMirror(){const l=mirrorLevels[mi],ret=2*md/(1-mv),ratio=(1-mv)/(1+mv);const tx=l.only==='f'?null:2*l.d/(1-l.v),fx=l.only==='t'?null:(1-l.v)/(1+l.v);const rok=tx===null||eq(ret,tx),fok=fx===null||eq(ratio,fx);let mirrorX=220;let lightHit=md/(1-mv);let wavePath=`M48 142L${mirrorX} 142L48 142`,svg=`<svg viewBox="0 0 320 264" role="img" aria-label="右側の鏡で反射する光。鏡が近づいたり遠ざかったりする"><defs><linearGradient id="rr"><stop stop-color="#5dd8e6"/><stop offset="1" stop-color="#c9f8fe"/></linearGradient></defs><path d="M20 143H301" stroke="#3f5671" stroke-width="1" stroke-dasharray="4 8"/><path d="M46 124V162" stroke="#93a7c2" stroke-width="4" stroke-linecap="round"/><circle cx="47" cy="143" r="7" fill="#9ef3fe"/><path d="M47 143H219" stroke="url(#rr)" stroke-width="3.8" stroke-linecap="round"/><path d="M219 154H47" stroke="${ratio>1?'#8cd8ff':ratio<1?'#ffadab':'#bcf4ef'}" stroke-width="3.5" stroke-dasharray="8 6"/><path d="M220 101V187" stroke="#f4d3a8" stroke-width="7" stroke-linecap="round"/><path d="M233 112l${mv>0?29:mv<0?-29:0} 0m${mv>0?0:mv<0?0:0} 0" stroke="#ffcf89" stroke-width="2.5"/><circle cx="219" cy="143" r="34" stroke="#ffcb8644" fill="none"/><text x="48" y="98" fill="#9aabbf" font-size="12" text-anchor="middle">送信機</text><text x="222" y="88" fill="#ffd6a3" font-size="12" text-anchor="middle">鏡</text>${svgText(160,223,'実線：往路  /  破線：復路','#8fa3c3',10)}${svgText(160,243,'光の速さは常に c','#7b91ae',11)}</svg>`;let controls=`<div class="readouts"><div class="readout"><div class="k">光が戻るまで</div><div class="v ${rok?'good':''}">${fmt(ret)} 拍</div><div class="target">目標 ${tx===null?'自由':fmt(tx)+' 拍'}</div></div><div class="readout"><div class="k">戻った光の周波数</div><div class="v ${fok?'good':''}">${fmt(ratio)} ×</div><div class="target">目標 ${fx===null?'自由':fmt(fx)+' ×'}</div></div></div><div class="control-title">① 鏡の初期距離（光が1拍で進む距離＝1）</div><div class="options">${[1,2,3,4,5].map(d=>`<button class="opt ${md===d?'active':''}" data-dist="${d}">${d}</button>`).join('')}</div><div class="control-title">② 鏡の移動速度（負は送信機に近づく）</div><div class="options">${[-.5,-.2,0,.2,.5].map(v=>`<button class="opt ${mv===v?'active':''}" data-v="${v}">${v>0?'+':''}${fmt(v)}c</button>`).join('')}</div>`;frame(mi,mirrorLevels.length,l.label,l.desc,'RELATIVISTIC DOPPLER',svg,controls,mmsg,'物理式：帰還時刻 2d/(c−v)（c=1）、反射後の周波数比 (c−v)/(c+v)。鏡は等速で動き、完全反射する理想化。');app.querySelectorAll('[data-dist]').forEach(b=>b.onclick=()=>{md=+b.dataset.dist;mmsg='鏡の初期距離を変更した。';beep();renderMirror()});app.querySelectorAll('[data-v]').forEach(b=>b.onclick=()=>{mv=+b.dataset.v;mmsg='鏡の速度を変更した。';beep();renderMirror()})}
-function check(){if(mode==='world'){const l=worldLevels[wi];let x=0,tau=0,at={};wv.forEach((v,k)=>{x+=v/5;tau+=2*Math.sqrt(1-(v/10)**2);at[k+1]=x});const ok=eq(x,l.x)&&eq(tau,l.tau)&&Object.entries(l.cp).every(([k,x])=>eq(at[+k],x));if(ok){wmsg='CLEAR  ·  世界線がぴったり一致！';beep(true);if(wi<worldLevels.length-1){renderWorld();setTimeout(()=>{if(mode!=='world')return;wi++;wv=Array(worldLevels[wi].n).fill(0);ws=0;wmsg='次の挑戦。黄色の通過点にも注目。';renderWorld()},900);return}else wmsg='CLEAR  ·  WORLDLINE 全問達成！'}else{wmsg='まだ条件に一致しない。帰還位置・船内時計・黄色い地点を見直してみよう。';beep()}renderWorld()}else if(mode==='causal'){const l=causalLevels[ci],req=l.nodes.filter(n=>n[3]===1).map(n=>n[0]);const ok=path.at(-1)==='G'&&req.every(n=>path.includes(n))&&path.length<=l.max;if(ok){cmsg='CLEAR  ·  因果の経路がつながった！';beep(true);if(ci<causalLevels.length-1){renderCausal();setTimeout(()=>{if(mode!=='causal')return;ci++;path=['S'];cmsg='次の経路を考えよう。';renderCausal()},900);return}else cmsg='CLEAR  ·  CAUSAL 全問達成！'}else{cmsg='まだ条件未達成。必須の黄色い点を全部通り、緑のゴールに到着しよう。';beep()}renderCausal()}else{const l=mirrorLevels[mi],t=2*md/(1-mv),f=(1-mv)/(1+mv),ok=(l.only==='f'||eq(t,2*l.d/(1-l.v)))&&(l.only==='t'||eq(f,(1-l.v)/(1+l.v)));if(ok){mmsg='CLEAR  ·  光の帰還がぴったり一致！';beep(true);if(mi<mirrorLevels.length-1){renderMirror();setTimeout(()=>{if(mode!=='mirror')return;mi++;md=1;mv=0;mmsg='次の反射条件を満たそう。';renderMirror()},900);return}else mmsg='CLEAR  ·  MIRROR 全問達成！'}else{mmsg='まだ条件に一致しない。帰還時間と周波数を同時に見てみよう。';beep()}renderMirror()}}
-function reset(){if(mode==='world'){wv=Array(worldLevels[wi].n).fill(0);ws=0;wmsg='区間を選び直そう。';renderWorld()}else if(mode==='causal'){path=['S'];cmsg='最初の信号からやり直そう。';renderCausal()}else{md=1;mv=0;mmsg='鏡の条件を初期化した。';renderMirror()}}
-function setMode(newmode){mode=newmode;document.querySelectorAll('.tab').forEach(b=>b.classList.toggle('active',b.dataset.mode===mode));if(mode==='world'){wv=wv.length===worldLevels[wi].n?wv:Array(worldLevels[wi].n).fill(0);renderWorld()}if(mode==='causal')renderCausal();if(mode==='mirror')renderMirror()}
-document.querySelectorAll('.tab').forEach(b=>b.addEventListener('click',()=>{beep();setMode(b.dataset.mode)}));wv=Array(worldLevels[wi].n).fill(0);setMode('world');
-</script></body></html>
+// 物理の厳密な一般相対論シミュレーションではなく、弱い重力による光線偏向を誇張した遊戯用モデル。
+// 星の横方向・縦方向への移動が、光線を連続的に変えることを重視。
+const LEVELS=[
+ {s:[210],sol:[[165,150]],start:[[166,323]],title:'ほしを うごかそう',sub:'ひかりを ゴールに とどけよう'},
+ {s:[150],sol:[[195,195]],start:[[190,70]],title:'こんどは したへ',sub:'ほしを うごかして ひかりを まげよう'},
+ {s:[274],sol:[[183,218]],start:[[180,340]],title:'ぐいーんと まげよう',sub:'ひかりの みちを かえよう'},
+ {s:[120],sol:[[160,185]],start:[[175,315]],title:'もう できるかな？',sub:'ほしを うごかして ゴールを ねらおう'},
+ {s:[210],sol:[[240,145]],start:[[125,300]],title:'よこにも うごかそう',sub:'ほしは どこに おいたら いい？'},
+ {s:[115,285],sol:[[175,205]],start:[[170,355]],title:'ひかりが 2ほん！',sub:'どちらも ゴールに とどけよう'},
+ {s:[140,255],sol:[[182,290]],start:[[108,350]],title:'2ほんを いっしょに',sub:'1この ほしで 2ほんを まげよう'},
+ {s:[150,270],sol:[[140,115],[235,245]],start:[[145,365],[235,65]],title:'ほしが 2こ！',sub:'2この ほしを うごかそう'},
+ {s:[120,300],sol:[[130,160],[245,310]],start:[[155,337],[245,80]],title:'ひかりの みちを つくろう',sub:'2この ほしを じょうずに つかおう'},
+ {s:[112,208,307],sol:[[196,275],[139,247]],start:[[145,330],[235,65]],title:'ひかりが 3ぼん！',sub:'3ぼん ぜんぶを ゴールへ'},
+ {s:[98,190,292],sol:[[130,240],[250,310]],start:[[180,340],[230,75]],title:'むずかしいぞ！',sub:'どの ほしから うごかす？'},
+ {s:[122,218,310],sol:[[110,170],[186,85],[257,258]],start:[[105,355],[180,348],[255,65]],title:'ほしの マスター',sub:'すべての ひかりを とどけよう'}
+];
+const COLORS=['#6ae9ff','#ff9fbd','#ffdca0'];
+const $=q=>document.querySelector(q), svgEl=(tag,attrs={},parent)=>{const n=document.createElementNS('http://www.w3.org/2000/svg',tag);for(const [k,v] of Object.entries(attrs))n.setAttribute(k,v);parent?.appendChild(n);return n};
+let level=0,stars=[],paths=[],prevTargets=[],goalY=[],drag=-1,dragId=null,dirty=true,cleared=false,hasTouched=false,hintVisible=false,gameTime=0,wasNear=false,soundOn=true,toastTimer=null,hintTimer=null,successTimer=null;
+let audio;
+const el={warp:$('#warp'),dust:$('#dust'),light:$('#lightpaths'),emit:$('#emitters'),recv:$('#receivers'),planets:$('#planets'),hint:$('#hint-layer'),gesture:$('#gesture'),status:$('#status'),progress:$('#progress'),headline:$('#headline'),subhead:$('#subhead'),spark:$('#spark'),success:$('#success-screen')};
+function tone(freq,delay=0,duration=.17,volume=.042){if(!soundOn)return;try{audio=audio||new (window.AudioContext||window.webkitAudioContext)();if(audio.state==='suspended')audio.resume();let now=audio.currentTime+delay;const o=audio.createOscillator(),g=audio.createGain();o.type='sine';o.frequency.setValueAtTime(freq,now);g.gain.setValueAtTime(.0001,now);g.gain.exponentialRampToValueAtTime(volume,now+.014);g.gain.exponentialRampToValueAtTime(.0001,now+duration);o.connect(g);g.connect(audio.destination);o.start(now);o.stop(now+duration+.01)}catch(e){}}
+function tapSound(){tone(550,0,.09,.019)}
+function winSound(){[523.25,659.25,783.99,1046.5].forEach((f,i)=>tone(f,i*.105,.42,.046))}
+function seeded(i){let x=Math.sin(i*127.1+31.81)*43758.5453;return x-Math.floor(x)}
+function makeDust(){el.dust.replaceChildren();for(let i=0;i<78;i++){let x=11+seeded(i*4+1)*338,y=10+seeded(i*4+2)*410;svgEl('circle',{cx:x,cy:y,r:(.45+seeded(i*7+4)*1.1).toFixed(2),fill:'#acd7f0',opacity:(.11+seeded(i*4+3)*.31).toFixed(2)},el.dust)}}
+makeDust();
+function trace(y0,pts){let x=28,y=y0,slope=0,poly=[[x,y]];const step=3;for(;x<334;){const ds=Math.min(step,334-x);for(const p of pts){const dx=p.x-x,dy=p.y-y,r2=dx*dx+dy*dy+625;slope+=ds*13*dy/Math.pow(r2,1.5)}slope=Math.max(-2.3,Math.min(2.3,slope));y+=slope*ds;x+=ds;poly.push([x,y])}return{poly,end:y}}
+function curvePath(points){return points.map(([x,y],i)=>`${i?'L':'M'}${x.toFixed(2)} ${y.toFixed(2)}`).join(' ')}
+function generateWarp(){el.warp.replaceChildren();for(let x=0;x<=360;x+=27){let pts=[];for(let y=0;y<=430;y+=10)pts.push(warpPoint(x,y));svgEl('path',{d:curvePath(pts),fill:'none',stroke:'#92c1e1','stroke-width':'.72',opacity:'.19'},el.warp)}for(let y=0;y<=430;y+=27){let pts=[];for(let x=0;x<=360;x+=10)pts.push(warpPoint(x,y));svgEl('path',{d:curvePath(pts),fill:'none',stroke:'#92c1e1','stroke-width':'.72',opacity:'.19'},el.warp)}
+ for(const st of stars){svgEl('circle',{cx:st.x,cy:st.y,r:51,fill:'none',stroke:'#c3a4ff','stroke-width':'.8','stroke-dasharray':'3 8',opacity:'.20'},el.warp)}}
+function warpPoint(x,y){for(const st of stars){let dx=st.x-x,dy=st.y-y,rr=dx*dx+dy*dy,dist=Math.sqrt(rr)+.001;let power=23*Math.exp(-rr/6700);x+=dx/dist*power;y+=dy/dist*power}return[x,y]}
+function buildRayLayers(){el.light.replaceChildren();paths=LEVELS[level].s.map((y,i)=>{const group=svgEl('g',{},el.light),color=COLORS[i],glow=svgEl('path',{fill:'none',stroke:color,'stroke-width':11,opacity:.12,filter:'url(#wideblur)'},group),halo=svgEl('path',{fill:'none',stroke:color,'stroke-width':5,opacity:.3,filter:'url(#blur)'},group),core=svgEl('path',{fill:'none',stroke:color,'stroke-width':2.6,opacity:.97,'stroke-linecap':'round'},group),orb=svgEl('circle',{r:4.1,fill:'#fff',stroke:color,'stroke-width':3},group),orbGlow=svgEl('circle',{r:10,fill:color,opacity:.18},group);return{y,group,glow,halo,core,orb,orbGlow,poly:[],end:0}})}
+function drawEmitters(){el.emit.replaceChildren();LEVELS[level].s.forEach((y,i)=>{const color=COLORS[i],g=svgEl('g',{},el.emit);svgEl('circle',{cx:28,cy:y,r:22,fill:color,opacity:.08},g);svgEl('circle',{cx:28,cy:y,r:11,fill:'#0e2639',stroke:color,'stroke-width':2.8},g);svgEl('path',{d:`M27 ${y-4}L34 ${y}L27 ${y+4}Z`,fill:color},g)})}
+function drawTargets(){el.recv.replaceChildren();prevTargets=[];goalY.forEach((y,i)=>{const color=COLORS[i],g=svgEl('g',{},el.recv);const aura=svgEl('circle',{cx:334,cy:y,r:26,fill:color,opacity:'.06'},g);const pulse=svgEl('circle',{cx:334,cy:y,r:19,fill:'none',stroke:color,'stroke-width':1.1,opacity:.45,class:'target-pulse'},g);const circle=svgEl('circle',{cx:334,cy:y,r:12,fill:'#112638',stroke:color,'stroke-width':3},g);svgEl('circle',{cx:334,cy:y,r:5,fill:color,opacity:.56},g);prevTargets.push({g,circle,aura,pulse,color,hit:false})})}
+function drawStars(){el.planets.replaceChildren();stars.forEach((s,i)=>{const g=svgEl('g',{transform:`translate(${s.x} ${s.y})`,class:'drag-target','data-star':i},el.planets);svgEl('circle',{r:59,fill:'url(#planet-glow)'},g);svgEl('circle',{r:28,fill:'none',stroke:'#b7a1ff','stroke-width':'1.7',opacity:.42,'stroke-dasharray':'3 6',class:'orb-breath'},g);svgEl('ellipse',{rx:35,ry:10,transform:'rotate(-24)',fill:'none',stroke:'#ccb6ff','stroke-width':'1.3',opacity:'.67'},g);svgEl('circle',{r:20,fill:'url(#planet-core)',stroke:'#c9baff','stroke-width':'1.2'},g);svgEl('circle',{cx:-7,cy:-7,r:6,fill:'#fff',opacity:.55,filter:'url(#blur)'},g);svgEl('circle',{cx:31,cy:-12,r:2.7,fill:'#d8caff'},g);svgEl('circle',{r:48,fill:'transparent','pointer-events':'all'},g);g.addEventListener('pointerdown',ev=>beginDrag(ev,i));s.node=g})}
+function drawGesture(){el.gesture.replaceChildren();if(hasTouched||level>0)return;const s=stars[0];const g=svgEl('g',{transform:`translate(${s.x+39} ${s.y+37})`},el.gesture);svgEl('rect',{x:-39,y:14,width:98,height:29,rx:15,fill:'#e8faff',opacity:'.95'},g);const txt=svgEl('text',{x:10,y:33,'font-size':12,'font-weight':900,'text-anchor':'middle',fill:'#143a50'},g);txt.textContent='ゆびで うごかす';svgEl('path',{d:'M0 2L-6 -5M0 2L6 -5',stroke:'#e8faff','stroke-width':2.5,'stroke-linecap':'round',fill:'none'},g)}
+function getGoalYs(){const l=LEVELS[level];return l.s.map(y=>trace(y,l.sol.map(([x,y])=>({x,y}))).end)}
+function loadLevel(index){clearTimeout(successTimer);clearTimeout(hintTimer);cleared=false;drag=-1;dragId=null;hintVisible=false;wasNear=false;level=(index+LEVELS.length)%LEVELS.length;const l=LEVELS[level];stars=l.start.map(([x,y])=>({x,y,node:null}));goalY=getGoalYs();el.headline.textContent=l.title;el.subhead.textContent=l.sub;$('#stage-menu').textContent=String(level+1).padStart(2,'0')+' / 12 ▾';el.success.classList.remove('show');$('#next').textContent=level===11?'もういちど あそぶ ↻':'つぎへ すすむ　→';el.status.textContent=level===0?'ほしを ゆびで うごかそう':l.s.length===1?'ひかりを ゴールへ':`${l.s.length}ぼんの ひかりを とどけよう`;el.spark.style.background=COLORS[0];el.spark.style.boxShadow='0 0 16px #65eaff75';el.progress.innerHTML=LEVELS.map((_,i)=>`<span class="pip ${i<level?'done':i===level?'now':''}"></span>`).join('');drawEmitters();drawTargets();buildRayLayers();drawStars();drawGesture();el.hint.replaceChildren();dirty=true;requestRecompute();$('#level-grid').innerHTML=LEVELS.map((_,i)=>`<button class="${level===i?'active':''}" data-go="${i}" aria-label="ステージ${i+1}">${String(i+1).padStart(2,'0')}</button>`).join('');$('#level-grid').querySelectorAll('button').forEach(b=>b.onclick=()=>{closeSheet();tapSound();loadLevel(+b.dataset.go)});}
+function requestRecompute(){dirty=true}
+function recompute(){dirty=false;generateWarp();let okCount=0;paths.forEach((p,i)=>{const r=trace(p.y,stars);p.poly=r.poly;p.end=r.end;const d=curvePath(r.poly);p.glow.setAttribute('d',d);p.halo.setAttribute('d',d);p.core.setAttribute('d',d);const err=Math.abs(p.end-goalY[i]);const hit=err<=(LEVELS[level].s.length>1?11:10);if(hit)okCount++;prevTargets[i].hit=hit;prevTargets[i].circle.setAttribute('stroke-width',hit?'5':'3');prevTargets[i].circle.setAttribute('fill',hit?COLORS[i]+'35':'#112638');prevTargets[i].aura.setAttribute('opacity',hit?'.23':'.06');prevTargets[i].circle.setAttribute('r',hit?'14':'12')});if(!cleared){if(okCount===paths.length){el.status.textContent='ぴったり！';el.spark.style.background='#b8ffda';if(!wasNear){tone(783.99,0,.12,.025);wasNear=true}if(drag<0){successTimer=setTimeout(()=>{if(!dirty&&!cleared&&paths.every((p,i)=>Math.abs(p.end-goalY[i])<=(paths.length>1?11:10)))doSuccess()},270)}}else{clearTimeout(successTimer);wasNear=false;const remain=paths.length-okCount;el.status.textContent=paths.length===1?'ひかりを ゴールへ':`あと ${remain}ぼん！`;el.spark.style.background=COLORS[Math.max(0,paths.findIndex((p,i)=>!prevTargets[i].hit))]}}}
+function animate(ts){gameTime=ts/1000;if(dirty)recompute();paths.forEach((p,i)=>{if(!p.poly.length)return;const cycle=(gameTime/(1.75+i*.19)+i*.27)%1;const t=cycle*(p.poly.length-1);const k=Math.min(p.poly.length-2,Math.floor(t));const a=p.poly[k],b=p.poly[k+1],f=t-k;const x=a[0]+(b[0]-a[0])*f,y=a[1]+(b[1]-a[1])*f;p.orb.setAttribute('cx',x);p.orb.setAttribute('cy',y);p.orbGlow.setAttribute('cx',x);p.orbGlow.setAttribute('cy',y)});requestAnimationFrame(animate)}
+function pointerPos(ev){const svg=$('#sceneSvg');const pt=svg.createSVGPoint();pt.x=ev.clientX;pt.y=ev.clientY;const ctm=svg.getScreenCTM();if(!ctm)return{x:0,y:0};const pp=pt.matrixTransform(ctm.inverse());return{x:pp.x,y:pp.y}}
+function beginDrag(ev,i){if(cleared)return;ev.preventDefault();if(!hasTouched){hasTouched=true;el.gesture.replaceChildren()}drag=i;dragId=ev.pointerId;stars[i].node.parentElement.append(stars[i].node);stars[i].node.setPointerCapture?.(ev.pointerId);tapSound();const p=pointerPos(ev);stars[i].ox=p.x-stars[i].x;stars[i].oy=p.y-stars[i].y;stars[i].node.style.cursor='grabbing'}
+function updateDrag(ev){if(drag<0||dragId!==ev.pointerId)return;ev.preventDefault();const p=pointerPos(ev),s=stars[drag];s.x=Math.max(72,Math.min(279,p.x-s.ox));s.y=Math.max(40,Math.min(390,p.y-s.oy));s.node.setAttribute('transform',`translate(${s.x} ${s.y})`);requestRecompute()}
+function endDrag(ev){if(drag<0||dragId!==ev.pointerId)return;const s=stars[drag];s.node.style.cursor='grab';drag=-1;dragId=null;recompute();if(paths.every((p,i)=>prevTargets[i].hit)&&!cleared){clearTimeout(successTimer);successTimer=setTimeout(()=>{if(!cleared)doSuccess()},220)}}
+$('#sceneSvg').addEventListener('pointermove',updateDrag);$('#sceneSvg').addEventListener('pointerup',endDrag);$('#sceneSvg').addEventListener('pointercancel',endDrag);
+function doSuccess(){if(cleared)return;cleared=true;clearTimeout(successTimer);winSound();el.status.textContent='やった！';$('#success-sub').textContent=level===11?'ぜんぶ クリア！ すごい！':`${paths.length}ぼんの ひかりが とどいた！`;el.success.classList.add('show');spawnSparkles();try{const old=Number(localStorage.getItem('gravityGlowMax')||0);if(level+1>old)localStorage.setItem('gravityGlowMax',level+1)}catch(e){}}
+function spawnSparkles(){const card=$('#scene-frame');for(let i=0;i<22;i++){const d=document.createElement('span');d.className='floating';d.textContent=i%4===0?'✦':'•';d.style.left=`${20+seeded(i*3+2)*63}%`;d.style.top=`${35+seeded(i*3+3)*33}%`;d.style.color=['#e8feff','#a0f8ff','#ffdbbb','#d8c7ff'][i%4];d.style.setProperty('--tx',`${(seeded(i*5+2)-.5)*150}px`);d.style.setProperty('--ty',`${-30-seeded(i*5+4)*90}px`);d.style.animationDelay=`${i*.025}s`;card.appendChild(d);setTimeout(()=>d.remove(),1250)}}
+function hint(){if(cleared)return;tapSound();el.hint.replaceChildren();LEVELS[level].sol.forEach(([x,y],i)=>{const g=svgEl('g',{},el.hint);svgEl('circle',{cx:x,cy:y,r:26,stroke:'#e0d1ff',fill:'#b9a5f7','fill-opacity':'.11','stroke-width':2,'stroke-dasharray':'5 5'},g);svgEl('path',{d:`M${x-9} ${y}H${x+9}M${x} ${y-9}V${y+9}`,stroke:'#d8c4ff','stroke-width':1.6,opacity:.7},g)});showToast('ほしを このあたりへ ✦');clearTimeout(hintTimer);hintTimer=setTimeout(()=>{el.hint.replaceChildren()},2400)}
+function showToast(message){const t=$('#toast');t.textContent=message;t.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove('show'),2000)}
+function openSheet(){$('#stage-sheet').classList.add('open')}
+function closeSheet(){$('#stage-sheet').classList.remove('open')}
+$('#stage-menu').onclick=openSheet;$('#close-sheet').onclick=closeSheet;$('#stage-sheet').addEventListener('click',e=>{if(e.target.id==='stage-sheet')closeSheet()});
+$('#hint').onclick=hint;$('#reset').onclick=()=>{tapSound();loadLevel(level)};$('#next').onclick=()=>{tapSound();loadLevel(level+1)};
+$('#sound').onclick=()=>{soundOn=!soundOn;$('#sound-wave').style.opacity=soundOn?'1':'.16';if(soundOn)tone(659.25,0,.14,.035)};
+window.addEventListener('keydown',e=>{if(e.key==='Escape')closeSheet();if(e.key==='ArrowRight'&&cleared)loadLevel(level+1)});
+loadLevel(0);requestAnimationFrame(animate);
+</script>
+</body></html>
