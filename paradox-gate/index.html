@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no" />
+<meta name="theme-color" content="#081321" />
+<title>PARADOX GATE — ながいロケットのひみつ</title>
+<style>
+:root{font-family:ui-rounded,"Hiragino Kaku Gothic ProN","Noto Sans JP",system-ui,sans-serif;background:#071422;color:#e9f7ff;--ice:#78e4eb;--gold:#f8d68c;--muted:#9baebe}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}html,body{width:100%;height:100%;margin:0;overscroll-behavior:none}body{display:flex;align-items:center;justify-content:center;background:radial-gradient(ellipse at 52% 25%,#193250 0%,#0c1b2d 46%,#050d17 100%);overflow:hidden}
+#app{position:relative;width:min(100vw,460px);height:min(100dvh,880px);display:flex;flex-direction:column;overflow:hidden;padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom);background:linear-gradient(165deg,#0f253b 0%,#09182a 56%,#08111e 100%)}
+@media(min-width:470px){#app{border:1px solid #34546b;border-radius:24px;box-shadow:0 26px 80px #0009}}
+header{height:70px;display:flex;align-items:center;justify-content:space-between;padding:18px 22px 6px;flex-shrink:0}
+.logo{font-size:11px;letter-spacing:.19em;font-weight:900;color:#8caabd}.logo strong{display:block;font-size:17px;color:#dffaff;letter-spacing:.085em;margin-top:3px}
+.lev{display:flex;gap:5px;align-items:center}.dot{width:9px;height:9px;border-radius:100%;border:1px solid #50667b;background:#26364a}.dot.current{background:#a2f8ed;box-shadow:0 0 12px #7de5eb80;border-color:#b0fff4}.dot.done{background:#658b9e;border-color:#658b9e}
+#reset{border:1px solid #37526c;border-radius:50%;color:#ccdfec;background:#11273e;font-size:18px;width:38px;height:38px;cursor:pointer}
+.headline{flex-shrink:0;min-height:86px;text-align:center;padding:7px 18px 0}.eyebrow{font-size:11px;letter-spacing:.19em;color:#8fb5c9;font-weight:800}h1{font-size:clamp(20px,5.5vw,27px);margin:8px 0 5px;font-weight:850;letter-spacing:.01em}.sub{font-size:12px;color:#b0c2cf;min-height:21px;line-height:1.55}
+#sceneWrap{flex:1;min-height:245px;position:relative;display:flex;justify-content:center;align-items:stretch;overflow:hidden;touch-action:none;cursor:grab}#sceneWrap.grabbing{cursor:grabbing}canvas{width:100%;height:100%;display:block;touch-action:none}
+.bottom{padding:0 20px 17px;flex-shrink:0;position:relative}.instruction{min-height:57px;display:flex;align-items:center;justify-content:center;text-align:center;font-size:16px;line-height:1.45;font-weight:800;white-space:pre-line;color:#e4f5fc;margin:0 0 11px}.small{display:none}
+.pulseBtn{display:flex;align-items:center;justify-content:center;gap:8px;margin:0 auto;padding:13px 24px;border-radius:999px;border:1px solid #78e5ed;background:linear-gradient(130deg,#70e2dd,#b7eee1);color:#092b3a;font-weight:850;font-size:16px;min-height:53px;cursor:pointer;box-shadow:0 6px 20px #55f4e62b}.pulseBtn:active{transform:scale(.97)}
+#actionWrap{min-height:55px;display:flex;align-items:center;justify-content:center;gap:9px}button.secondary{border:1px solid #47677e;color:#c6e9f1;border-radius:999px;background:#132d42;padding:12px 15px;font-size:13px;font-weight:700;cursor:pointer}
+.toast{position:absolute;top:47%;left:50%;transform:translate(-50%,-50%);background:#061522e9;color:#fff;padding:13px 24px;border-radius:20px;border:1px solid #72cad180;font-size:21px;font-weight:900;text-align:center;opacity:0;pointer-events:none;white-space:pre-line;transition:opacity .18s;box-shadow:0 12px 30px #0004}.toast.on{opacity:1}
+#info{display:none;position:absolute;inset:0;background:#06111cea;z-index:20;align-items:center;justify-content:center;padding:25px}#info.open{display:flex}.infoBox{background:#132b42;border:1px solid #406077;border-radius:24px;padding:26px;max-width:360px;line-height:1.85;font-size:14px}.infoBox h2{margin:0 0 12px;font-size:21px}.infoBox p{color:#c4d9e4}.infoBox button{margin:12px 0 0}
+#infoLink{position:absolute;right:73px;top:21px;border:1px solid #37526c;border-radius:50%;height:30px;width:30px;color:#a6c6d7;background:#11273e;font-size:14px;padding:0;cursor:pointer}
+@media(max-height:640px){header{height:57px;padding-top:7px}.headline{min-height:73px;padding-top:0}h1{font-size:20px}.bottom{padding-bottom:7px}.instruction{min-height:43px;margin-bottom:5px;font-size:14px}.small{margin-top:5px}}
+</style>
+</head>
+<body><main id="app">
+<header><div class="logo">A LITTLE UNIVERSE <strong>PARADOX GATE</strong></div><div class="lev" id="dots"><span class="dot current"></span><span class="dot"></span></div><button id="reset" title="もういちど" aria-label="もういちど">↻</button></header>
+<div class="headline"><div class="eyebrow" id="chapter">STAGE 01 / 02</div><h1 id="goal">ながいロケットを いれよう！</h1><div class="sub" id="subtitle">このトンネル、ロケットよりみじかいよ？</div></div>
+<div id="sceneWrap" aria-label="ロケットを左に引っ張って離すゲーム"><canvas id="scene"></canvas><div class="toast" id="toast"></div></div>
+<div class="bottom"><p class="instruction" id="instruction">🚀 ロケットを ひっぱって はなそう</p><div id="actionWrap"></div><div class="small" id="small">ボタンで速さを選ぶのではなく、指でロケットを引いて飛ばそう。</div></div>
+<button id="infoLink" aria-label="物理について">?</button>
+<div id="info"><div class="infoBox"><h2>🚀 ロケットのひみつ</h2><p>ものすごく速く走るものは、止まっている駅から同じ時刻に長さを測ると、進む方向に短くなる。これは「ローレンツ収縮」という現実の相対論的効果だよ。</p><p>ただし、実際の写真で必ずつぶれて見えるわけではない。このゲームは「駅で測った長さ」を図として見せているよ。</p><p>さらに、同じ2つの扉が「同時に閉じた」かどうかは、駅とロケットで違う。これも本当の特殊相対性理論。</p><button class="pulseBtn" id="closeInfo">ゲームにもどる</button></div></div>
+</main>
+<script>
+(()=>{
+'use strict';
+const $=x=>document.getElementById(x), canvas=$('scene'),wrap=$('sceneWrap'),ctx=canvas.getContext('2d');
+const S={W:390,H:410,rocketNose:182,L:174,gateL:220,gateR:355,c:190,flashT:1.12};
+const levels=[{name:'ながいロケットを いれよう！',description:'このトンネル、ロケットよりみじかいよ？',instruction:'🚀 ロケットを うしろに ひっぱって はなそう',timed:false},{name:'せーの！で とびらが しまる',description:'はやすぎると、トンネルを とびだすよ',instruction:'🚀 こんどは ちょうどいい はやさを さがそう',timed:true}];
+let level=0, state='idle',drag=null,power=0,beta=0,realT=0,flashDone=false,flashAt=0,flashMoment=0,success=false,mode='ground',celebrate=0,viewStarted=0,failKind='',last=0,tries=0,particles=[],shownPrompt=false,ctxAudio=null,muted=false;
+let Dpr=1,stars=Array.from({length:70},(_,i)=>({x:(i*79+17)%390,y:(i*41+43)%405,r:((i*11)%5+3)/11,a:.16+((i*13)%8)/20}));
+const min=(x,a,b)=>Math.max(a,Math.min(b,x));const ease=(t)=>t*t*(3-2*t);
+function sound(freq,dur=.12,vol=.038,delay=0,type='sine'){if(muted)return;try{ctxAudio??=new (window.AudioContext||window.webkitAudioContext)();if(ctxAudio.state==='suspended')ctxAudio.resume();const o=ctxAudio.createOscillator(),g=ctxAudio.createGain(),t=ctxAudio.currentTime+delay;o.type=type;o.frequency.setValueAtTime(freq,t);g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(vol,t+.018);g.gain.exponentialRampToValueAtTime(.0001,t+dur);o.connect(g);g.connect(ctxAudio.destination);o.start(t);o.stop(t+dur+.01)}catch(e){}}
+function winChime(){[523.25,659.25,783.99,1046.5].forEach((n,i)=>sound(n,.28,.034,i*.09))}
+function renderButtons(){const box=$('actionWrap');box.innerHTML='';if(state==='clear'){const b=document.createElement('button');b.className='pulseBtn';b.textContent=level===0?'つぎへ  ›':'もういちど  ↻';b.onclick=()=>{sound(659,.13);load(level===0?1:0)};box.append(b);if(level===1){const r=document.createElement('button');r.className='secondary';r.textContent='🚀 ロケットから';r.onclick=()=>{mode='ship';state='replay';viewStarted=performance.now()/1000;renderButtons();sound(440,.14)};box.append(r)}}else if(state==='replay'){const b=document.createElement('button');b.className='pulseBtn';b.textContent='もどる  ↩';b.onclick=()=>{mode='ground';state='clear';renderButtons()};box.append(b)}else if(state==='fail'){const b=document.createElement('button');b.className='pulseBtn';b.textContent='もういっかい  ↻';b.onclick=()=>{sound(495,.1);restart()};box.append(b)}else{let dot=document.createElement('span');dot.style.cssText='color:#9ebaca;font-size:13px';dot.textContent=state==='run'?'とびらの タイミングを みてね':'← ながく引くほど、速くとぶ';box.append(dot)}}
+function load(n){level=n;tries=0;shownPrompt=false;restart();$('chapter').textContent=`STAGE 0${n+1} / 02`;$('goal').textContent=levels[n].name;$('subtitle').textContent=levels[n].description;document.querySelectorAll('.dot').forEach((d,i)=>d.className='dot '+(i===n?'current':i<n?'done':''))}
+function restart(){state='idle';mode='ground';drag=null;power=0;beta=0;realT=0;flashDone=false;success=false;celebrate=0;particles=[];failKind='';shownPrompt=false;wrap.classList.remove('grabbing');$('instruction').textContent=levels[level].instruction;$('toast').classList.remove('on');renderButtons()}
+function posFromPointer(e){const r=canvas.getBoundingClientRect();return{x:(e.clientX-r.left)/r.width*S.W,y:(e.clientY-r.top)/r.height*S.H}}
+function handleDown(e){if(state!=='idle')return;const p=posFromPointer(e),sceneY=mainY();if(p.y<sceneY-43||p.y>sceneY+43||p.x<0||p.x>190)return;try{canvas.setPointerCapture(e.pointerId)}catch(err){};e.preventDefault();drag={id:e.pointerId,x:p.x,y:p.y};wrap.classList.add('grabbing');$('instruction').textContent='👈 もっと ひっぱれるよ';sound(392,.11,.028)}
+function handleMove(e){if(!drag||e.pointerId!==drag.id)return;const p=posFromPointer(e);power=min(drag.x-p.x,0,150);power=Math.max(0,power);if(power>18){const v=getBeta(power);$('instruction').textContent=v>.73?'✨ ロケットが ちぢむ！':'💫 もっと はやく できるよ'}e.preventDefault()}
+function handleUp(e){if(!drag||e.pointerId!==drag.id)return;drag=null;wrap.classList.remove('grabbing');try{canvas.releasePointerCapture(e.pointerId)}catch(err){};if(power>14){beta=getBeta(power);state='run';realT=0;flashDone=false;flashAt=0;tries++;power=0;renderButtons();$('instruction').textContent='とびらが とじるよ！';sound(329.63,.16,.035);sound(493.88,.24,.027,.08)}else{power=0;$('instruction').textContent=levels[level].instruction}e.preventDefault()}
+function getBeta(d){return min(.13 + .84*Math.pow(d/150,.80),0,.970)}
+function mainY(){return Math.min(S.H*.43,220)}
+function resize(){const r=canvas.getBoundingClientRect();Dpr=Math.min(devicePixelRatio||1,2);canvas.width=Math.round(r.width*Dpr);canvas.height=Math.round(r.height*Dpr);S.H=S.W*r.height/r.width;ctx.setTransform(canvas.width/S.W,0,0,canvas.height/S.H,0,0)}
+function gradient(x,y,r,c1,c2){const g=ctx.createRadialGradient(x,y,0,x,y,r);g.addColorStop(0,c1);g.addColorStop(1,c2);return g}
+function rr(x,y,w,h,r){r=Math.min(r,w/2,h/2);ctx.beginPath();ctx.roundRect(x,y,w,h,r)}
+function line(x1,y1,x2,y2,c,w=1,dash=[]){ctx.beginPath();ctx.setLineDash(dash);ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.strokeStyle=c;ctx.lineWidth=w;ctx.stroke();ctx.setLineDash([])}
+function circle(x,y,r,c){ctx.fillStyle=c;ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.fill()}
+function text(t,x,y,size=14,c='#e8f8ff',weight='600',align='center'){ctx.font=`${weight} ${size}px ui-rounded, system-ui,sans-serif`;ctx.fillStyle=c;ctx.textAlign=align;ctx.fillText(t,x,y)}
+function starfield(time){const g=ctx.createLinearGradient(0,0,0,S.H);g.addColorStop(0,'#0e243b');g.addColorStop(1,'#071421');ctx.fillStyle=g;ctx.fillRect(0,0,S.W,S.H);for(const s of stars){let a=s.a*(.83+.17*Math.sin(time*.9+s.x*.07));circle(s.x,s.y%S.H,s.r,`rgba(176,216,242,${a})`)}}
+function drawGate(y,flash,dim=false){const x1=S.gateL,x2=S.gateR;const gateTop=y-68,gateBot=y+68;ctx.fillStyle=gradient((x1+x2)/2,y,100,'#34718f24','#34718f00');ctx.fillRect(x1-50,gateTop-40,230,200);
+ctx.strokeStyle='#8dd6e0';ctx.lineWidth=2;rr(x1,gateTop,x2-x1,136,16);ctx.stroke();ctx.fillStyle='#173c53a8';rr(x1+4,gateTop+4,x2-x1-8,128,12);ctx.fill();
+for(let yy=gateTop+22; yy<gateBot;yy+=20){line(x1+11,yy,x2-11,yy,'#2e5a7080',.9,[3,7])}
+for(const x of [x1,x2]){ctx.fillStyle='#53778fa6';rr(x-6,gateTop-8,12,152,5);ctx.fill();ctx.fillStyle='#a4f4ea';rr(x-3,gateTop-7,6,152,3);ctx.globalAlpha=.38;ctx.fill();ctx.globalAlpha=1}
+text('GATE', (x1+x2)/2,gateTop-20,13,'#78b6c8','900');if(!dim){text('⇆', (x1+x2)/2, gateBot+30,25,'#3f839d');}
+if(flash>0){ctx.globalAlpha=.3+.35*flash;ctx.fillStyle='#fff8ce';ctx.fillRect(x1-6,gateTop-8,12,152);ctx.fillRect(x2-6,gateTop-8,12,152);ctx.globalAlpha=flash;line(x1,gateTop+3,x2,gateTop+3,'#f5d997',3);line(x1,gateBot-2,x2,gateBot-2,'#f5d997',3);ctx.globalAlpha=1}
+}
+function drawRocket(nose,len,y,phase=0,tint='#8bf0ed',ghost=false){if(nose<-10||nose-len>S.W+10)return;ctx.save();ctx.globalAlpha=ghost?.46:1;let rear=nose-len;ctx.shadowColor=ghost?'#89f9f5':'#55b9de';ctx.shadowBlur=ghost?8:12;ctx.fillStyle=ghost?'#88e7ee18':'#d8f7f5';rr(rear+4,y-19,Math.max(4,len-21),38,18);ctx.fill();ctx.shadowBlur=0;ctx.beginPath();ctx.moveTo(nose-18,y-18);ctx.quadraticCurveTo(nose+9,y,nose-18,y+18);ctx.closePath();ctx.fillStyle=ghost?'#92e7ef31':'#9fe5e5';ctx.fill();if(!ghost){ctx.fillStyle='#2e7696';rr(rear+15,y-14,Math.max(5,len-44),28,12);ctx.fill();let cabinX=nose-Math.min(37,len*.25);circle(cabinX,y,12,'#1a445f');circle(cabinX-2,y-2,8,'#d0f6f7');circle(cabinX-5,y-4,2.4,'#274c65');circle(cabinX+1,y-4,2.4,'#274c65');ctx.strokeStyle='#315d68';ctx.lineWidth=1.5;ctx.beginPath();ctx.arc(cabinX-2,y-1,4,.2,Math.PI-.2);ctx.stroke();ctx.fillStyle='#f4ae86';rr(rear,y-12,9,24,4);ctx.fill();ctx.fillStyle='#6cbfd6';ctx.beginPath();ctx.moveTo(rear+20,y+13);ctx.lineTo(rear+38,y+13);ctx.lineTo(rear+25,y+31);ctx.closePath();ctx.fill();ctx.beginPath();ctx.moveTo(rear+20,y-13);ctx.lineTo(rear+38,y-13);ctx.lineTo(rear+25,y-31);ctx.closePath();ctx.fill();if(phase>0){let length=15+9*(.5+.5*Math.sin(phase*19));ctx.fillStyle=gradient(rear-8,y,30,'#ffd79d','#f58c5b00');ctx.beginPath();ctx.moveTo(rear,y-9);ctx.quadraticCurveTo(rear-length,y,rear,y+9);ctx.fill()}}
+else{ctx.setLineDash([3,6]);ctx.strokeStyle='#c2fff4';ctx.lineWidth=2;rr(rear+4,y-21,Math.max(4,len-16),42,16);ctx.stroke();ctx.setLineDash([])}ctx.restore()}
+function handHint(t,y){const wave=(Math.sin(t*2.5)+1)/2;const x=155-wave*83;ctx.globalAlpha=.55;line(162,y+44,x+15,y+44,'#9cf7e3',3,[4,6]);circle(x,y+44,13,'#7ad7dc');circle(x-2,y+40,5,'#dcfffb');ctx.globalAlpha=1;text('←',x-36,y+50,24,'#7ee4e2')}
+function fireSpark(x,y,kind='cyan'){for(let i=0;i<34;i++){const a=Math.PI*2*i/34;const v=50+Math.random()*140;particles.push({x,y,vx:Math.cos(a)*v,vy:Math.sin(a)*v,life:.6+Math.random()*.5,c:kind==='gold'?'#ffe3a3':'#84ffff'})}}
+function drawProgress(y,dt){if(!levels[level].timed)return;const phase=Math.min(realT/S.flashT,1);const x1=66,x2=324;line(x1,y,x2,y,'#34596c',6);line(x1,y,x1+(x2-x1)*phase,y,'#f5d897',6);circle(x1+(x2-x1)*phase,y,8,'#fbe9bb');text('せーの！まで',S.W/2,y-15,12,'#a8bac4')}
+function drawMiniMeasure(atY,v){const rest=122,short=122*Math.sqrt(1-v*v),left=145;ctx.save();ctx.globalAlpha=.9;text('はしると どうなる？',S.W/2,atY-21,12,'#8eb4c4','700');ctx.fillStyle='#41627b';rr(left,atY-5,rest,10,5);ctx.fill();text('とまる',left-18,atY+4,11,'#9bb7c9','600','right');ctx.fillStyle='#89e9e5';rr(left,atY+22,Math.max(short,13),11,5);ctx.fill();text('はしる',left-18,atY+30,11,'#a7e3e1','600','right');ctx.restore()}
+function shipScene(time){const b=beta,gamma=1/Math.sqrt(1-b*b),w=S.gateR-S.gateL;let local=(time-viewStarted);let primeT=-1.1+Math.min(Math.max(local/4.4,0),1)*2.2;let shift=-b*S.c*primeT;let center=190+shift;let doorW=w/gamma;let left=center-doorW/2,right=center+doorW/2;let midY=mainY();
+starfield(time);text('ロケットから みると…',195,51,20,'#d7fcf1','900');text('トンネルのほうが みじかい！',195,79,13,'#a8cbd6');
+ctx.save();ctx.strokeStyle='#426d84';ctx.lineWidth=2;rr(left,midY-67,doorW,134,12);ctx.stroke();ctx.fillStyle='#1b3d50a0';rr(left,midY-64,doorW,128,10);ctx.fill();
+let timeRight=-gamma*b*w/(2*S.c),timeLeft=-timeRight;let closeR=Math.max(0,1-Math.abs(primeT-timeRight)/.19),closeL=Math.max(0,1-Math.abs(primeT-timeLeft)/.19);
+for(const [x,flash] of [[left,closeL],[right,closeR]]){ctx.fillStyle=flash>0?'#fff3b5':'#789aae';rr(x-6,midY-72,12,144,4);ctx.fill();if(flash>0){ctx.shadowColor='#ffeda7';ctx.shadowBlur=23;ctx.fillRect(x-5,midY-70,10,140);ctx.shadowBlur=0}}ctx.restore();
+drawRocket(190+S.L/2,S.L,midY,1,'#b7e6ed');
+text('ロケットの ながさは もとどおり',195,midY+114,13,'#dcebf1');
+const evtext=primeT<timeRight-.1?'もうすぐ…':primeT<timeRight+.20?'右の とびら！':primeT<timeLeft-.2?'つぎは 左の とびら':primeT<timeLeft+.20?'左の とびら！':'同時じゃ なかった！';text(evtext,195,midY-106,20,'#ffe5ac','900');
+if(local>4.8){text('駅では いっしょに しまったのに…',195,S.H-55,13,'#f8e0a9')}
+}
+function groundScene(now,dt){starfield(now);let y=mainY();
+// a stationary measuring grid: this is a measured length rather than a photograph
+for(let x=14;x<S.W;x+=25){line(x,y+75,x,y+82,'#376278',1)}line(0,y+82,S.W,y+82,'#1f4d64',2);
+let v=state==='idle'&&drag?getBeta(power):beta;let len=state==='idle'?S.L:S.L*Math.sqrt(1-beta*beta);let nose=state==='run'||state==='clear'||state==='fail'?S.rocketNose+beta*S.c*realT:S.rocketNose;let entryTime=(S.gateL+S.gateR)/(2);let flash=flashDone?Math.max(0,1-(now-flashMoment)*5):0;
+if(state==='clear'||state==='fail')flash=Math.max(flash,.13);
+drawGate(y,flash);
+if(state==='idle'&&drag){let back=Math.min(power*.2,28);nose-=back;drawRocket(nose,S.L,y,0);const futureLen=S.L*Math.sqrt(1-v*v);const ghostNose=level===0?(S.gateL+S.gateR+futureLen)/2:S.rocketNose+v*S.c*S.flashT;drawRocket(ghostNose,futureLen,y,0,'#7cdff5',true);text('とぶときの すがた', 282,y-93,11,'#88d5e5');ctx.save();ctx.globalAlpha=.38;line(183,y,183-power,y,'#d9efb4',4,[5,5]);ctx.restore()}
+else{drawRocket(nose,len,y,state==='run'?realT:0);if(state==='idle'&&now%8<7&&!shownPrompt){handHint(now,y)}}
+if(state==='idle'){ctx.globalAlpha=.75;text('ながい ロケット',101,y-57,12,'#b1d8e8');ctx.globalAlpha=1}
+drawMiniMeasure(y+Math.min(148,(S.H-y)*.55),v); if(level===1){drawProgress(y+Math.min(228,(S.H-y)*.91),dt)}
+if(state==='clear'||state==='fail'){let f=state==='clear';text(f?'すっぽり！':'おしい！',195,y-113,27,f?'#c1ffe2':'#ffe3b2','900');if(!f){const p=S.rocketNose+beta*S.c*realT;let reason=failKind==='early'?'まだ うしろが のこってる！':failKind==='late'?'まえが はみでちゃった！':'ながすぎて はいれない！';text(reason,195,y+132,14,'#f5c6a0')}}
+for(let i=particles.length-1;i>=0;i--){let p=particles[i];p.life-=dt;p.x+=p.vx*dt;p.y+=p.vy*dt;p.vy+=65*dt;if(p.life<=0){particles.splice(i,1);continue}ctx.globalAlpha=Math.min(1,p.life);circle(p.x,p.y,2.4,p.c);ctx.globalAlpha=1}
+}
+function flashEvent(now){flashDone=true;flashMoment=now;const len=S.L*Math.sqrt(1-beta*beta);const front=S.rocketNose+beta*S.c*realT;const back=front-len;const fit=back>=S.gateL+2&&front<=S.gateR-2;success=fit;failKind=front>S.gateR-2?'late':back<S.gateL+2?'early':'long';state=fit?'clear':'fail';celebrate=now;renderButtons();sound(262,.16,.04);sound(392,.16,.035,.035);if(fit){winChime();fireSpark((S.gateL+S.gateR)/2,mainY(),'gold');$('instruction').textContent=level===0?'✨ ながい ロケットが はいった！':'✨ はやさも タイミングも ぴったり！'}else{$('instruction').textContent=level===0?'あれ？ ロケットが はみでちゃった！':'あれ？ とびらに はさまっちゃった！';sound(293.7,.21,.023,.13)}
+$('toast').textContent=fit?'すっぽり！':'おしい！';$('toast').classList.add('on');setTimeout(()=>$('toast').classList.remove('on'),800)}
+function animate(tms){let now=tms/1000,dt=last?Math.min(now-last,.05):0;last=now;if(canvas.width!==Math.round(canvas.getBoundingClientRect().width*Dpr)||canvas.height!==Math.round(canvas.getBoundingClientRect().height*Dpr))resize();if(state==='run'){const prev=realT;realT+=dt*1.1;if(level===0){const mid=(S.gateL+S.gateR)/2;const len=S.L*Math.sqrt(1-beta*beta);const noseNow=S.rocketNose+beta*S.c*realT;const center=noseNow-len/2;if(center>=mid||realT>8){realT=(mid+len/2-S.rocketNose)/(beta*S.c);flashEvent(now)}}else if(realT>=S.flashT){realT=S.flashT;flashEvent(now)}}ctx.setTransform(canvas.width/S.W,0,0,canvas.height/S.H,0,0);if(mode==='ship')shipScene(now);else groundScene(now,dt);requestAnimationFrame(animate)}
+canvas.addEventListener('pointerdown',handleDown);canvas.addEventListener('pointermove',handleMove);canvas.addEventListener('pointerup',handleUp);canvas.addEventListener('pointercancel',handleUp);$('reset').onclick=()=>{sound(523,.1);restart()};$('infoLink').onclick=()=>{$('info').classList.add('open')};$('closeInfo').onclick=()=>{$('info').classList.remove('open')};window.addEventListener('resize',resize);window.addEventListener('keydown',e=>{if(e.key==='Escape'){$('info').classList.remove('open');if(state==='replay'){state='clear';mode='ground';renderButtons()}}});resize();load(0);requestAnimationFrame(animate);
+window.__GATE_DEBUG={getState:()=>({state,level,beta,realT,success,failKind}),setLevel:(n)=>load(n),launch:(b)=>{beta=b;state='run';realT=0;flashDone=false;renderButtons()},getBeta};
+})();
+</script>
+</body>
+</html>
